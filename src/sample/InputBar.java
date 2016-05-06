@@ -6,13 +6,13 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 
 /**
  * Created by wcong on 2016/5/5.
  */
-public class InputBar extends HBox {
+public class InputBar extends VBox {
 
     private final WebEngine webEngine;
 
@@ -26,7 +26,6 @@ public class InputBar extends HBox {
         inputField = new TextField();
         getChildren().add(inputField);
         button = new Button("前往");
-        button.setStyle("-fx-min-width: 10%");
         getChildren().add(button);
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -40,8 +39,9 @@ public class InputBar extends HBox {
     protected void layoutChildren() {
         double w = getWidth();
         double h = getHeight();
-        double ifWidth = inputField.prefWidth(h);
-        inputField.setStyle("-fx-min-width: " + ifWidth);
+        double ifWidth = w * 0.8;
+        inputField.setMinWidth(ifWidth);
+        button.minWidth(w - ifWidth);
         layoutInArea(inputField, 0, 0, ifWidth, h, 0, HPos.CENTER, VPos.CENTER);
         layoutInArea(button, ifWidth, 0, w - ifWidth, h, 0, HPos.CENTER, VPos.CENTER);
     }

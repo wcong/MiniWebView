@@ -31,18 +31,27 @@ public class Main extends Application {
 
     private CookieStore getCookieStore() {
         if (!cookieFile.exists()) {
-            return null;
+            return new MemoryCookieStore();
         }
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(cookieFile));
-            return (CookieStore) objectInputStream.readObject();
+            CookieStore cookieStore = (CookieStore) objectInputStream.readObject();
+            if (cookieStore == null) {
+                return new MemoryCookieStore();
+            } else {
+                return cookieStore;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new MemoryCookieStore();
         }
     }
 
     public void stop() {
+        saveCookie();
+    }
+
+    private void saveCookie() {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(cookieFile));
             objectOutputStream.writeObject(cookieStore);

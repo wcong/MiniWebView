@@ -1,4 +1,4 @@
-package sample;
+package org.wcong.webexplore;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,13 +43,15 @@ public class Browser extends Region {
 
     private static String[] captions = new String[]{
             "扇贝",
-            "微博"
+            "微博",
+            "知乎"
     };
     final Hyperlink[] hpls = new Hyperlink[captions.length];
 
     private static String[] urls = new String[]{
             "https://www.shanbay.com/",
-            "http://www.weibo.com"
+            "http://www.weibo.com",
+            "https://www.zhihu.com"
     };
 
     public Browser(CookieStore cookieStore) {

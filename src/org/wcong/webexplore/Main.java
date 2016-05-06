@@ -1,4 +1,4 @@
-package sample;
+package org.wcong.webexplore;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

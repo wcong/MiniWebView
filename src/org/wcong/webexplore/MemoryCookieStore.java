@@ -1,4 +1,4 @@
-package sample;
+package org.wcong.webexplore;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
